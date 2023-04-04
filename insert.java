@@ -1,5 +1,3 @@
-package unorderedarray;
-
 import java.util.Scanner;
 
 public class insert {
@@ -10,7 +8,7 @@ public class insert {
         int n = sc.nextInt();
 
         System.out.println("Enter an unsorted array");
-        int arr[] = new int[n];
+        int arr[] = new int[n+1];
         int i;
         for (i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
@@ -26,6 +24,6 @@ public class insert {
             System.out.println(arr[i] + " ");
         }
 
-        // sc.close();
+        sc.close();
     }
 }
