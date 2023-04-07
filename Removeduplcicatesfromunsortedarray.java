@@ -58,5 +58,6 @@ public class Removeduplcicatesfromunsortedarray {
             removeUsingHashmap(arr);
             System.out.println("print using set approach O(n)");
             // removeUsingHashset(arr);
+            sc.close();
     }
 }
