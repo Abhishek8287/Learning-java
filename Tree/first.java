@@ -57,11 +57,53 @@ class Tree{
     public void Inorder(Node temp) {
         if (temp == null) {
             return;
-        }
-        else {
+        } else {
             Inorder(temp.left);
             System.out.print(temp.data + " ");
             Inorder(temp.right);
+        }
+    }
+    
+    public int count(Node root) {
+        if (root == null)
+            return 0;
+        int leftNode = count(root.left);
+        int rightNode = count(root.right);
+
+        return (leftNode + rightNode + 1);
+
+    }
+
+    public int sum(Node root) {
+        if (root == null)
+            return 0;
+        else {
+            int leftSum = sum(root.left);
+            int rightSum = sum(root.right);
+
+            return leftSum + rightSum + root.data;
+        }
+    }
+
+    public int height(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        else {
+            int leftHeight = height(root.left);
+            int rightHeight = height(root.right);
+
+            int myheight = -1 ;
+            if(leftHeight > rightHeight)
+                {
+                    myheight = leftHeight ;
+                }
+            else{
+                myheight = rightHeight ;
+            }
+
+
+            return (myheight + 1);
         }
     }
 }
@@ -75,6 +117,16 @@ public class first
         tr.postOrder(root);
         System.out.println();
         tr.Inorder(root);
+        System.out.println();
+        int result = tr.count(root);
+
+        System.out.println(result);
+
+        int Sum = tr.sum(root);
+        System.out.println(Sum);
+        System.out.println();
+        int length = tr.height(root);
+        System.out.println(length);
 }
 
 }
