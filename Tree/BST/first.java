@@ -28,29 +28,54 @@ class BST {
         }
         if (root.data > key) {
             return search(root.left, key);
-        }
-        else if(root.data < key){
+        } else if (root.data < key) {
             return search(root.right, key);
-        }
-        else if(root.data == key){
-            return true ;
+        } else {
+            return true;
         }
     }
-    public  Node insert(Node root , int val) {
-        
-  
-        
+
+    public Node delete(Node root, int val) {
+        if (root.data > val) {
+            root.left = delete(root.left, val);
+        } else if (root.data < val) {
+            root.right = delete(root.right, val);
+        } else {
+            //case 1
+            if (root.left == null && root.right == null) {
+                return null;
+            }
+            //case 2
+            else if (root.left == null) {
+                return root.right;
+            }
+
+            //case 3 
+            Node is = inorderSuccesor(root.right);
+            root.data = is.data;
+            root.right = delete(root.right, is.data);
+
+        }
+        return root;
+    }
+
+    public Node inorderSuccesor(Node root) {
+        while (root.left != null) {
+            root = root.left;
+        }
+        return root;
+    }
+
+    public Node insert(Node root, int val) {
 
         if (root == null) {
             root = new Node(val);
             return root;
-        }
-        else {
-           
+        } else {
+
             if (root.data > val) {
                 root.left = insert(root.left, val);
-            }
-            else {
+            } else {
                 root.right = insert(root.right, val);
             }
         }
@@ -58,7 +83,6 @@ class BST {
         return root;
     }
 }
-
 public class first {
     public static void main(String args[]) {
         BST bt = new BST();
@@ -70,6 +94,10 @@ public class first {
             root = bt.insert(root, val);
         }
         System.out.println();
+        bt.Inorder(root);
+        int n = sc.nextInt();
+        System.out.println(bt.search(root, n));
+        bt.delete(root, 4);
         bt.Inorder(root);
     }
 }
